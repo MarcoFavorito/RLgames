@@ -17,7 +17,6 @@ class GymMinecraft(GymPygameWrapper, Minecraft):
     def __init__(self):
         Minecraft.__init__(self, rows=10, cols=10, trainsessionname='test')
         self.init(DummyAgent())
-        self.sound_enabled = False
 
         ntasks = 1
         for t in list(m.TASKS.keys()):

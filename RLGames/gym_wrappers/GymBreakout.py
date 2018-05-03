@@ -19,8 +19,8 @@ class GymBreakout(GymPygameWrapper, Breakout):
     def __init__(self, brick_rows=3, brick_cols=3, trainsessionname='test', deterministic=True):
         Breakout.__init__(self, brick_rows, brick_cols, trainsessionname=trainsessionname)
         self.deterministic = deterministic
-        self.init(DummyAgent())
         self.sound_enabled = False
+        self.init(DummyAgent())
 
         self.observation_space = Dict({
             "ball_x": Discrete(self.n_ball_x),

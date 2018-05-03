@@ -20,8 +20,8 @@ class GymSapientino(GymPygameWrapper, Sapientino):
     def __init__(self, rows=5, cols=7, trainsessionname='test', ncol=7, nvisitpercol=2, deterministic=True):
         Sapientino.__init__(self, rows, cols, trainsessionname, ncol, nvisitpercol)
         self.deterministic = deterministic
-        self.init(DummyAgent())
         self.sound_enabled = False
+        self.init(DummyAgent())
 
 
         self.observation_space = Dict({
