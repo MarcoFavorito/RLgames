@@ -42,5 +42,5 @@ class GymSapientino(GymPygameWrapper, Sapientino):
             "y":        self.pos_y,
             "theta":    int(self.pos_th/90),
             "color":    self.encode_color(),
-            "RAState":  self.RA.current_node
+            "RAState":  int(self.RA.current_node)
         }
