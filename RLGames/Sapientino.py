@@ -663,7 +663,7 @@ class Sapientino(object):
         # agent position
         dx = int(self.offx + self.pos_x * self.size_square)
         dy = int(self.offy + (self.rows-self.pos_y-1) * self.size_square)
-        pygame.draw.circle(self.screen, pygame.color.THECOLORS['orange'], [dx+self.size_square/2, dy+self.size_square/2], 2*self.radius, 0)
+        pygame.draw.circle(self.screen, pygame.color.THECOLORS['orange'], [dx+self.size_square//2, dy+self.size_square//2], 2*self.radius, 0)
 
         # agent orientation
 
@@ -678,7 +678,7 @@ class Sapientino(object):
         elif (self.pos_th == 270): # down
             oy = self.radius
 
-        pygame.draw.circle(self.screen, pygame.color.THECOLORS['black'], [dx+self.size_square/2+ox, dy+self.size_square/2+oy], 5, 0)
+        pygame.draw.circle(self.screen, pygame.color.THECOLORS['black'], [dx+self.size_square//2+ox, dy+self.size_square//2+oy], 5, 0)
 
         pygame.display.update()
 

@@ -311,7 +311,7 @@ class SimpleGrid(object):
             cmd = '^'
         elif self.command==4:
             cmd = 'v'
-        s = '%d %s' %(x,cmd)
+        s = '%d %s' % (SimpleGrid.getstate(self), cmd)
         count_label = self.myfont.render(s, 100, pygame.color.THECOLORS['brown'])
         self.screen.blit(count_label, (60, 10))
         

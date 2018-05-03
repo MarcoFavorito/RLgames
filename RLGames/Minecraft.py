@@ -599,7 +599,7 @@ class Minecraft(object):
 
         x = self.getstate()
         cmd = self.action_names[self.command]
-        s = '%d %s' %(x,cmd)
+        s = '%d %s' %(Minecraft.getstate(self),cmd)
         count_label = self.myfont.render(s, 100, pygame.color.THECOLORS['brown'])
         self.screen.blit(count_label, (60, 10))
         
@@ -663,7 +663,7 @@ class Minecraft(object):
         elif (self.pos_th == 270): # down
             oy = self.radius
 
-        pygame.draw.circle(self.screen, pygame.color.THECOLORS['black'], [dx+self.size_square/2+ox, dy+self.size_square/2+oy], 5, 0)
+        pygame.draw.circle(self.screen, pygame.color.THECOLORS['black'], [dx+self.size_square//2+ox, dy+self.size_square//2+oy], 5, 0)
         
          
         pygame.display.update()
