@@ -9,7 +9,8 @@ try:
     from keras.models import Sequential
     from keras.layers import Dense, Activation
 except:
-    print('Install keras if you want to use function approximation')
+    pass
+    # print('Install keras if you want to use function approximation')
 
 class RLAgent(object):
 

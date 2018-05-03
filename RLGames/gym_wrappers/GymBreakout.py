@@ -91,7 +91,7 @@ class GymBreakout(GymPygameWrapper, Breakout):
             self.nactions = 4  # 3: fire
 
         self.n_diff_paddle_ball = int(2*self.win_width/b.resolutionx)+1
-
+        self.nstates = None
 
 
 
