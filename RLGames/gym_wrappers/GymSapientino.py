@@ -21,6 +21,8 @@ class GymSapientino(GymPygameWrapper, Sapientino):
         Sapientino.__init__(self, rows, cols, trainsessionname, ncol, nvisitpercol)
         self.deterministic = deterministic
         self.init(DummyAgent())
+        self.sound_enabled = False
+
 
         self.observation_space = Dict({
             "x": Discrete(self.cols),

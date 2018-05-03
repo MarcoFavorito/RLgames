@@ -13,6 +13,7 @@ class GymSimpleGrid(GymPygameWrapper, SimpleGrid):
     def __init__(self, rows=3, cols=3, trainsessionname='test'):
         SimpleGrid.__init__(self, rows, cols, trainsessionname=trainsessionname)
         self.init(DummyAgent())
+        self.sound_enabled = False
 
         self.observation_space = Dict({
             "x": Discrete(self.rows),

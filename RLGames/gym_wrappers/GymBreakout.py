@@ -20,6 +20,7 @@ class GymBreakout(GymPygameWrapper, Breakout):
         Breakout.__init__(self, brick_rows, brick_cols, trainsessionname=trainsessionname)
         self.deterministic = deterministic
         self.init(DummyAgent())
+        self.sound_enabled = False
 
         self.observation_space = Dict({
             "ball_x": Discrete(self.n_ball_x),
