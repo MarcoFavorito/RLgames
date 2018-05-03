@@ -107,4 +107,5 @@ data/*.info
 
 
 *.bak
+.idea
 
