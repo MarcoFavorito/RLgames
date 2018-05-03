@@ -1,6 +1,6 @@
 # RLgames
 
-Examples of use of RL agents for different games.
+Examples of use of RL agents for different games using the framework [RLTG](https://github.com/MarcoFavorito/rltg.git).
 
 You can select a game, a RL algorithm and the training file. Learning mode will train the agent, evaluation mode (with option ``--eval``) will execute the current best policy.
 

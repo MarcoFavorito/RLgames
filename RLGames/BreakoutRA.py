@@ -4,15 +4,7 @@
 # Luca Iocchi 2017
 #
 
-import pygame, sys
-import numpy as np
-import atexit
-import random
-import time
-import math
-from math import fabs
-
-from Breakout import *
+from RLGames.Breakout import *
 
 
 # Reward automa
