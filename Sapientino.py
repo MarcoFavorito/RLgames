@@ -240,8 +240,8 @@ class Sapientino(object):
         self.agent = agent
         self.nactions = 5  # 0: left, 1: right, 2: up, 3: down, 4: bip
         ns = self.getSizeStateSpace() * self.RA.nRAstates
-        print('Number of states: %d' %ns)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %ns))
+        print(('Number of actions: %d' %self.nactions))
         self.agent.init(ns, self.nactions) 
         self.agent.set_action_names(self.action_names)
 
@@ -514,7 +514,7 @@ class Sapientino(object):
                     self.usercommand = 4
                 elif event.key == pygame.K_SPACE:
                     self.pause = not self.pause
-                    print "Game paused: ",self.pause
+                    print("Game paused: ",self.pause)
                 elif event.key == pygame.K_a:
                     self.isAuto = not self.isAuto
                 elif event.key == pygame.K_s:
@@ -531,10 +531,10 @@ class Sapientino(object):
                     #self.agent.debug = False
                 elif event.key == pygame.K_o:
                     self.optimalPolicyUser = not self.optimalPolicyUser
-                    print "Best policy: ",self.optimalPolicyUser
+                    print("Best policy: ",self.optimalPolicyUser)
                 elif event.key == pygame.K_q:
                     self.userquit = True
-                    print "User quit !!!"
+                    print("User quit !!!")
 
         return True
 
@@ -590,7 +590,7 @@ class Sapientino(object):
             #self.doSave()
             pgoal = float(self.ngoalreached*100)/numiter
             print('-----------------------------------------------------------------------')
-            print("%s %6d/%4d avg last 100: reward %.2f | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100)/100, float(self.cumscore100)/100, pgoal))
+            print(("%s %6d/%4d avg last 100: reward %.2f | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100)/100, float(self.cumscore100)/100, pgoal)))
             print('-----------------------------------------------------------------------')
             self.cumreward100 = 0  
             self.cumscore100 = 0 

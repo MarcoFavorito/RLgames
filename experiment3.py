@@ -1,7 +1,7 @@
 #!/bin/env/python
 
 import os
-import thread
+import _thread
 import time
 
 def doExperiment(game, gameext, agent, gamma, epsilon, lambdae, alpha, nstep, niter, maxtime, stopongoal, expid_from, exp_id_to):
@@ -29,7 +29,7 @@ def doExperiment(game, gameext, agent, gamma, epsilon, lambdae, alpha, nstep, ni
         cmd = "python game.py %s %s %s_%02d -gamma %f -epsilon %f -lambdae %f -alpha %f -nstep %d -niter %d -maxtime %d %s" %(gamecfg,agent,basetrainfilename,i,gamma,epsilon,lambdae,alpha,nstep,niter,maxtime,str_stopongoal)
         xterm_cmd = 'xterm -geometry 100x20+0+20 -e "%s" ' %(cmd)
         # use -hold and & at the end for parallel execution and monitoring
-        print cmd
+        print(cmd)
         os.system(cmd)
         #thread.start_new_thread( os.system, (cmd,) )
         print('sleep...')

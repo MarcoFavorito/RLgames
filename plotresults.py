@@ -6,7 +6,7 @@ import sys
 
 
 if len(sys.argv) == 1:
-    print "Use: plotresults.py <filename>"
+    print("Use: plotresults.py <filename>")
     sys.exit(1)
 
     

@@ -87,8 +87,8 @@ class SimpleGrid(object):
         self.agent = agent
         self.nactions = 5  # 0: not moving, 1: left, 2: right, 3: up, 4: down        
         ns = self.rows * self.cols
-        print('Number of states: %d' %ns)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %ns))
+        print(('Number of actions: %d' %self.nactions))
         self.agent.init(ns, self.nactions) # 1 for RA not used here
         self.agent.set_action_names(self.action_names)
 
@@ -216,7 +216,7 @@ class SimpleGrid(object):
                     self.usercommand = 4
                 elif event.key == pygame.K_SPACE:
                     self.pause = not self.pause
-                    print("Game paused: %s" %self.pause)
+                    print(("Game paused: %s" %self.pause))
                 elif event.key == pygame.K_a:
                     self.isAuto = not self.isAuto
                 elif event.key == pygame.K_s:
@@ -231,7 +231,7 @@ class SimpleGrid(object):
                     self.agent.debug = False
                 elif event.key == pygame.K_o:
                     self.optimalPolicyUser = not self.optimalPolicyUser
-                    print("Best policy: %s" %self.optimalPolicyUser)
+                    print(("Best policy: %s" %self.optimalPolicyUser))
                 elif event.key == pygame.K_q:
                     self.userquit = True
                     print("User quit !!!")
@@ -280,7 +280,7 @@ class SimpleGrid(object):
             #self.doSave()
             pgoal = float(self.ngoalreached*100)/numiter
             print('-----------------------------------------------------------------------')
-            print("%s %6d avg last 100: reward %d | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration,self.cumreward100/100, float(self.cumscore100)/100, pgoal))
+            print(("%s %6d avg last 100: reward %d | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration,self.cumreward100/100, float(self.cumscore100)/100, pgoal)))
             print('-----------------------------------------------------------------------')
             self.cumreward100 = 0  
             self.cumscore100 = 0 

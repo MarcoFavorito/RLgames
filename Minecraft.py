@@ -138,7 +138,7 @@ class Minecraft(object):
     def ntaskstates(self):
         global TASKS
         r = 1
-        for t in TASKS.keys():
+        for t in list(TASKS.keys()):
             r *= len(TASKS[t])
         return r
         
@@ -153,8 +153,8 @@ class Minecraft(object):
         self.agent = agent
         self.nactions = 6 + len(CRAFTEDTOOLS)  # 0: left, 1: right, 2: up, 3: down, 4: get, 5: use, 6 ...: use crafted tools
         ns = self.rows * self.cols * self.ntaskstates()
-        print('Number of REWARD_STATES: %d' %ns)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of REWARD_STATES: %d' %ns))
+        print(('Number of actions: %d' %self.nactions))
         self.agent.init(ns, self.nactions) # 1 for RA not used here
         self.agent.set_action_names(self.action_names)
 
@@ -204,7 +204,7 @@ class Minecraft(object):
         global TASKS
         # RA state of each sub-task
         self.task_state = {}
-        for t in TASKS.keys():
+        for t in list(TASKS.keys()):
             self.task_state[t]=0
         self.actionlocation = []
         self.ntaskactions = 0
@@ -212,7 +212,7 @@ class Minecraft(object):
     def reset_partial_tasks(self):
         global TASKS
         # RA state of each sub-task
-        for t in TASKS.keys():
+        for t in list(TASKS.keys()):
             if (self.task_state[t] < len(TASKS[t])):
                 #print('reset task %s' %t)
                 self.task_state[t]=0
@@ -222,7 +222,7 @@ class Minecraft(object):
         global TASKS
         r = 0
         b = 1
-        for t in TASKS.keys():
+        for t in list(TASKS.keys()):
             r += b * self.task_state[t]
             b *= len(TASKS[t])
         return r
@@ -262,7 +262,7 @@ class Minecraft(object):
     def doget(self):
         what = self.itemat(self.pos_x, self.pos_y)
         if what!=None and not self.isAuto:
-            print "get: ",what
+            print("get: ",what)
         if (what==None):
             r = REWARD_STATES['BadGet']
         else:
@@ -273,7 +273,7 @@ class Minecraft(object):
     def douse(self):
         what = self.itemat(self.pos_x, self.pos_y)
         if what!=None and not self.isAuto:
-            print "use: ",what
+            print("use: ",what)
         if (what==None):
             r = REWARD_STATES['BadUse']
         else:    
@@ -283,7 +283,7 @@ class Minecraft(object):
     def dousetool(self, it):
         what = CRAFTEDTOOLS[it]
         if not self.isAuto:
-            print "use: ",what
+            print("use: ",what)
         if (not self.has[what]):
             r = REWARD_STATES['BadUse']
         else:    
@@ -297,7 +297,7 @@ class Minecraft(object):
         act = a+"_"+what
         #if not self.isAuto:
         #print("checking action %s" %act)
-        for t in TASKS.keys():
+        for t in list(TASKS.keys()):
             ts = self.task_state[t]
             tl = TASKS[t] # action list for this task
             #print('  -- %s' %tl[ts])
@@ -308,7 +308,7 @@ class Minecraft(object):
                 r += REWARD_STATES['TaskProgress']
                 if (self.task_state[t] == len(tl)):
                     if not self.isAuto:
-                        print("!!!Task %s completed!!!" %t)
+                        print(("!!!Task %s completed!!!" %t))
                     v = t.split('_') 
                     self.has[v[1]] = True
                     r += REWARD_STATES['TaskComplete']
@@ -513,7 +513,7 @@ class Minecraft(object):
                     self.usercommand = 7
                 elif event.key == pygame.K_SPACE:
                     self.pause = not self.pause
-                    print("Game paused: %s" %self.pause)
+                    print(("Game paused: %s" %self.pause))
                 elif event.key == pygame.K_a:
                     self.isAuto = not self.isAuto
                 elif event.key == pygame.K_s:
@@ -525,7 +525,7 @@ class Minecraft(object):
                     self.agent.debug = False
                 elif event.key == pygame.K_o:
                     self.optimalPolicyUser = not self.optimalPolicyUser
-                    print("Best policy: %s" %self.optimalPolicyUser)
+                    print(("Best policy: %s" %self.optimalPolicyUser))
                 elif event.key == pygame.K_q:
                     self.userquit = True
                     print("User quit !!!")
@@ -574,7 +574,7 @@ class Minecraft(object):
             #self.doSave()
             pgoal = float(self.ngoalreached*100)/numiter
             print('-----------------------------------------------------------------------')
-            print("%s %6d/%4d avg last 100: reward %d | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100)/100, float(self.cumscore100)/100, pgoal))
+            print(("%s %6d/%4d avg last 100: reward %d | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100)/100, float(self.cumscore100)/100, pgoal)))
             print('-----------------------------------------------------------------------')
             self.cumreward100 = 0  
             self.cumscore100 = 0 
@@ -602,7 +602,7 @@ class Minecraft(object):
         self.screen.blit(count_label, (60, 10))
         
         sinv = ''
-        for t in TASKS.keys():
+        for t in list(TASKS.keys()):
             if (self.task_state[t] == len(TASKS[t])):
                 sinv += '*'
             else:

@@ -173,8 +173,8 @@ class BreakoutSRA(BreakoutS):
     def setStateActionSpace(self):
         super(BreakoutSRA, self).setStateActionSpace()
         self.nstates *= self.RA.nRAstates
-        print('Number of states: %d' %self.nstates)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %self.nstates))
+        print(('Number of actions: %d' %self.nactions))
 
     def getstate(self):
         x = super(BreakoutSRA, self).getstate()
@@ -240,7 +240,7 @@ class BreakoutSRA(BreakoutS):
         if (self.iteration%numiter==0):
             #self.doSave()
             print('-----------------------------------------------------------------------')
-            print("%s %6d/%4d avg last 100: reward %.1f | RA %.2f | p goals %.1f %% <<<" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100/100), float(self.cumscore100)/100, float(self.RA.goalreached*100)/numiter))
+            print(("%s %6d/%4d avg last 100: reward %.1f | RA %.2f | p goals %.1f %% <<<" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100/100), float(self.cumscore100)/100, float(self.RA.goalreached*100)/numiter)))
             print('-----------------------------------------------------------------------')
             self.cumreward100 = 0
             self.cumscore100 = 0
@@ -290,8 +290,8 @@ class BreakoutNRA(BreakoutN):
     def setStateActionSpace(self):
         super(BreakoutNRA, self).setStateActionSpace()
         self.nstates *= self.RA.nRAstates
-        print('Number of states: %d' %self.nstates)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %self.nstates))
+        print(('Number of actions: %d' %self.nactions))
 
     def getstate(self):
         x = super(BreakoutNRA, self).getstate()
@@ -333,7 +333,7 @@ class BreakoutNRA(BreakoutN):
         self.gamman *= self.agent.gamma
 
         if (r<0):
-            print("Neg reward: %.1f" %r)
+            print(("Neg reward: %.1f" %r))
         return r
 
 
@@ -370,7 +370,7 @@ class BreakoutNRA(BreakoutN):
         if (self.iteration%numiter==0):
             #self.doSave()
             print('----------------------------------------------------------------------------------')
-            print("%s %6d/%4d avg last 100: reward %.1f | RA %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100/100), float(self.cumscore100)/100, float(self.RA.goalreached*100)/numiter))
+            print(("%s %6d/%4d avg last 100: reward %.1f | RA %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100/100), float(self.cumscore100)/100, float(self.RA.goalreached*100)/numiter)))
             print('----------------------------------------------------------------------------------')
             self.cumreward100 = 0
             self.cumscore100 = 0
@@ -394,8 +394,8 @@ class BreakoutSRAExt(BreakoutSRA):
     def setStateActionSpace(self):
         super(BreakoutSRAExt, self).setStateActionSpace()
         self.nstates *= math.pow(2,self.brick_rows*self.brick_cols)
-        print('Number of states: %d' %self.nstates)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %self.nstates))
+        print(('Number of actions: %d' %self.nactions))
 
     def getstate(self):
         x = super(BreakoutSRAExt, self).getstate()
@@ -419,8 +419,8 @@ class BreakoutNRAExt(BreakoutNRA):
     def setStateActionSpace(self):
         super(BreakoutNRAExt, self).setStateActionSpace()
         self.nstates *= math.pow(2,self.brick_rows*self.brick_cols)
-        print('Number of states: %d' %self.nstates)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %self.nstates))
+        print(('Number of actions: %d' %self.nactions))
 
     def getstate(self):
         x = super(BreakoutNRAExt, self).getstate()

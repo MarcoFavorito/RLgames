@@ -19,7 +19,7 @@ agent = None
 
 
 def loadGameModule():
-    print("Loading game %s" %args.game)
+    print(("Loading game %s" %args.game))
     try:
         if (args.game=='SimpleGrid'):
             mod = importlib.import_module(args.game)
@@ -112,17 +112,17 @@ def loadGameModule():
             game = mod.Minecraft(trainsessionname=trainfilename)
             game.differential = True
         else:
-            print("ERROR: game %s not found." %args.game)
+            print(("ERROR: game %s not found." %args.game))
             sys.exit(1)
     except:
-        print("ERROR: game %s not found." %args.game)
+        print(("ERROR: game %s not found." %args.game))
         raise
         sys.exit(1)
     return game
 
 
 def loadAgentModule():
-    print("Loading agent "+args.agent)
+    print(("Loading agent "+args.agent))
     try:
         if (args.agent=='Q'):
             modname = 'RLAgent'
@@ -142,10 +142,10 @@ def loadAgentModule():
             mod = importlib.import_module(modname)
             agent = mod.MCAgent()
         else:
-            print("ERROR: agent %s not found." %modname)
+            print(("ERROR: agent %s not found." %modname))
             sys.exit(1)
     except:
-        print("ERROR: agent %s not found." %modname)
+        print(("ERROR: agent %s not found." %modname))
         raise
         sys.exit(1)
     return agent
@@ -158,7 +158,7 @@ def save():
         filename = 'data/'+trainfilename
         savedata = [game.savedata(), agent.savedata()]
         np.savez(filename, gamedata = savedata[0], agentdata = savedata[1])
-        print("Data saved successfully on file %s\n\n\n" %filename)
+        print(("Data saved successfully on file %s\n\n\n" %filename))
 
         
 def load(fname, game, agent):
@@ -301,8 +301,8 @@ def learn(game, agent, maxtime=-1, stopongoal=False):
         print("***************************\n")
         if (agent.Qapproximation):
             for a in range(0,game.nactions):
-                print("Q[%d]" %a)
-                print("       ",agent.Q[a].get_weights())
+                print(("Q[%d]" %a))
+                print(("       ",agent.Q[a].get_weights()))
     
 
 # evaluation process
@@ -394,8 +394,8 @@ if __name__ == "__main__":
 
     # load saved data
     load(trainfilename,game,agent)
-    print("Game iteration: %d" %game.iteration)
-    print("Game elapsedtime: %d" %game.elapsedtime)
+    print(("Game iteration: %d" %game.iteration))
+    print(("Game elapsedtime: %d" %game.elapsedtime))
 
     if (game.iteration==0):
         writeinfo(trainfilename,game,agent,init=True)

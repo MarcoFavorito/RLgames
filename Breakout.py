@@ -133,7 +133,7 @@ class Breakout(object):
         
     def init(self, agent):  # init after creation (uses args set from cli)
 
-        print('init ', self.sound_enabled)
+        print(('init ', self.sound_enabled))
         self.sound_enabled = True
         if (self.sound_enabled):
             self.se_brick = pygame.mixer.Sound('brick_hit.wav')
@@ -475,7 +475,7 @@ class Breakout(object):
                     self.isPressed = True
                 elif event.key == pygame.K_SPACE:
                     self.pause = not self.pause
-                    print("Game paused: %d" %self.pause)
+                    print(("Game paused: %d" %self.pause))
                 elif event.key == pygame.K_a:
                     self.isAuto = not self.isAuto
                 elif event.key == pygame.K_s:
@@ -492,7 +492,7 @@ class Breakout(object):
                     self.agent.debug = False
                 elif event.key == pygame.K_o:
                     self.optimalPolicyUser = not self.optimalPolicyUser
-                    print("Best policy: %d" %self.optimalPolicyUser)
+                    print(("Best policy: %d" %self.optimalPolicyUser))
                 elif event.key == pygame.K_q:
                     self.userquit = True
                     print("User quit !!!")
@@ -544,7 +544,7 @@ class Breakout(object):
             #self.doSave()
             pgoal = float(self.ngoalreached*100)/numiter
             print('-----------------------------------------------------------------------')
-            print("%s %6d/%4d avg last 100: reward %.1f | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100/100), float(self.cumscore100)/100, pgoal))
+            print(("%s %6d/%4d avg last 100: reward %.1f | score %.2f | p goals %.1f %%" %(self.trainsessionname, self.iteration, self.elapsedtime, float(self.cumreward100/100), float(self.cumscore100)/100, pgoal)))
             print('-----------------------------------------------------------------------')
             self.cumreward100 = 0
             self.cumscore100 = 0
@@ -635,8 +635,8 @@ class BreakoutN(Breakout):
             self.nactions = 4  # 3: fire
         
         self.nstates = self.n_ball_x * self.n_ball_y * self.n_ball_dir * self.n_paddle_x
-        print('Number of states: %d' %self.nstates)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %self.nstates))
+        print(('Number of actions: %d' %self.nactions))
  
     def getstate(self):
         #diff_paddle_ball = (int(self.ball_x)-self.paddle_x+self.win_width)/resolution
@@ -690,8 +690,8 @@ class BreakoutS(Breakout):
             self.nactions = 4  # 3: fire
         
         self.nstates = self.n_diff_paddle_ball
-        print('Number of states: %d' %self.nstates)
-        print('Number of actions: %d' %self.nactions)
+        print(('Number of states: %d' %self.nstates))
+        print(('Number of actions: %d' %self.nactions))
 
         
     def getstate(self):

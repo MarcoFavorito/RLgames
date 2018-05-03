@@ -105,3 +105,6 @@ data/*.npz
 data/*.dat
 data/*.info
 
+
+*.bak
+

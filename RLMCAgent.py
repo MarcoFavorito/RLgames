@@ -90,8 +90,8 @@ class MCAgent(object):
     def decision(self, x):
         a = self.choose_action(x)
         if self.debug:
-            print "Q: ",x," -> ",self.getQA(x)
-            print "Decision: ",x,"  -> ",a
+            print("Q: ",x," -> ",self.getQA(x))
+            print("Decision: ",x,"  -> ",a)
 
         return a
         
@@ -119,8 +119,8 @@ class MCAgent(object):
             r = random.random() * s  # deal with non-normalized values
             
             if self.debug:
-                print "pi(a|x) = ", self.getpiA(x)
-                print "sum pi(a|x) ", s, "   - random: ", r
+                print("pi(a|x) = ", self.getpiA(x))
+                print("sum pi(a|x) ", s, "   - random: ", r)
             
             
             c = 0
@@ -128,7 +128,7 @@ class MCAgent(object):
             while (c<s+1):
                 c += self.getpi(x,a)
                 if self.debug:
-                    print "   - action ",a," p(a|x) = ",self.getpi(x,a)
+                    print("   - action ",a," p(a|x) = ",self.getpi(x,a))
                     #print "          rand ",r," < c ", c, "   "
                 if (r<c):
                 #    print "***"
@@ -136,7 +136,7 @@ class MCAgent(object):
                 a += 1
 
         if self.debug:
-            print "Action ",a 
+            print("Action ",a) 
             
         return a
 
@@ -183,14 +183,14 @@ class MCAgent(object):
         # update pi for all states in this episode
         for ep in self.episode:
             if (self.debug):
-                print "[D] episode step ", ep
+                print("[D] episode step ", ep)
 
             x = ep[0] # current state
 
             ba = np.argmax(self.getQA(x))
             if (self.debug):
-                print "[D] Q(x,:) = ", self.getQA(x)
-                print "[D] best action ", ba
+                print("[D] Q(x,:) = ", self.getQA(x))
+                print("[D] best action ", ba)
             
             # update pi epsilon-greedy
             for a in range(0,self.nactions):
@@ -200,5 +200,5 @@ class MCAgent(object):
                     self.pi[x,a] = epsilon / self.nactions
 
             if (self.debug):
-                print "[D] pi(a,:) = ", self.getpiA(x)
+                print("[D] pi(a,:) = ", self.getpiA(x))
 
