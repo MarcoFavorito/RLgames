@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 import pygame, sys
 import numpy as np
 import atexit
@@ -35,18 +37,18 @@ LOCATIONS = [ ('wood',brown,1,1), ('grass',green,4,3), ('iron',grey,5,5), ('gold
     ('toolshed',dbrown,2,4), ('workbench',dgreen,6,3), ('factory',dgrey,4,7) ]
 
 
-TASKS = { 
-    'make_plank': ['get_wood', 'use_toolshed'],
-    'make_stick': ['get_wood', 'use_workbench'],
-    'make_cloth': ['get_grass', 'use_factory'],
-    'make_rope':  ['get_grass', 'use_toolshed'],
-    'make_bridge': ['get_iron', 'get_wood', 'use_factory'],
-    'make_bed': ['get_wood', 'use_toolshed', 'get_grass', 'use_workbench'],
-    'make_axe': ['get_wood', 'use_workbench', 'get_iron', 'use_toolshed'],
-    'make_shears': ['get_wood', 'use_workbench', 'get_iron', 'use_workbench'],
-    'get_gold': ['get_iron', 'get_wood', 'use_factory', 'use_bridge'],
-    'get_gem': ['get_wood', 'use_workbench', 'get_iron', 'use_toolshed', 'use_axe']
-}
+TASKS = OrderedDict([
+    ('get_gem', ['get_wood', 'use_workbench', 'get_iron', 'use_toolshed', 'use_axe']),
+    ('make_bed', ['get_wood', 'use_toolshed', 'get_grass', 'use_workbench']),
+    ('make_axe', ['get_wood', 'use_workbench', 'get_iron', 'use_toolshed']),
+    ('make_shears', ['get_wood', 'use_workbench', 'get_iron', 'use_workbench']),
+    ('get_gold', ['get_iron', 'get_wood', 'use_factory', 'use_bridge']),
+    ('make_bridge', ['get_iron', 'get_wood', 'use_factory']),
+    ('make_plank', ['get_wood', 'use_toolshed']),
+    ('make_stick', ['get_wood', 'use_workbench']),
+    ('make_cloth', ['get_grass', 'use_factory']),
+    ('make_rope',  ['get_grass', 'use_toolshed']),
+])
 
 REWARD_STATES = {
     'Init':0,
