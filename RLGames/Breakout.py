@@ -110,7 +110,7 @@ class Breakout(object):
         self.hiscore = 0
         self.hireward = -1000000
         self.vscores = []
-        self.resfile = open("data/"+self.trainsessionname +".dat","a+")
+        # self.resfile = open("data/"+self.trainsessionname +".dat","a+")
         self.elapsedtime = 0 # elapsed time for this experiment
 
         self.win_width = int((block_width+block_xdistance) * self.brick_cols + block_xdistance )
@@ -554,8 +554,8 @@ class Breakout(object):
         sys.stdout.flush()
         
         self.vscores.append(self.score)
-        self.resfile.write("%d,%d,%d,%d\n" % (self.score, self.cumreward, self.goal_reached(),self.numactions))
-        self.resfile.flush()
+        # self.resfile.write("%d,%d,%d,%d\n" % (self.score, self.cumreward, self.goal_reached(),self.numactions))
+        # self.resfile.flush()
 
 
     def draw(self):
@@ -602,7 +602,7 @@ class Breakout(object):
 
 
     def quit(self):
-        self.resfile.close()
+        # self.resfile.close()
         pygame.quit()
 
     # To be implemented by sub-classes    

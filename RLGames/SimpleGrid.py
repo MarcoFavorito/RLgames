@@ -51,7 +51,7 @@ class SimpleGrid(object):
         
         self.hiscore = 0
         self.hireward = -1000000
-        self.resfile = open("data/"+self.trainsessionname +".dat","a+")
+        # self.resfile = open("data/"+self.trainsessionname +".dat","a+")
         self.elapsedtime = 0 # elapsed time for this experiment
 
         self.win_width = 480
@@ -288,8 +288,8 @@ class SimpleGrid(object):
 
         sys.stdout.flush()
         
-        self.resfile.write("%d,%d,%d,%d\n" % (self.score, self.cumreward, self.goal_reached(),self.numactions))
-        self.resfile.flush()
+        # self.resfile.write("%d,%d,%d,%d\n" % (self.score, self.cumreward, self.goal_reached(),self.numactions))
+        # self.resfile.flush()
 
 
     def draw(self):
@@ -340,6 +340,6 @@ class SimpleGrid(object):
 
 
     def quit(self):
-        self.resfile.close()
+        # self.resfile.close()
         pygame.quit()
 
