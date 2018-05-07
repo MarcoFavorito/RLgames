@@ -28,9 +28,9 @@ class GymSapientino(GymPygameWrapper, Sapientino):
             "x": Discrete(self.cols),
             "y": Discrete(self.rows),
             "theta": Discrete(4),                           # four directions: North - South - East - West
-            # "color": Discrete(self.ncolors + 1)           # number of colors + no-color
-            "color": Discrete(len(s.TOKENS) + 1),           # from encode_colors()
-            "RAState": Discrete(self.RA.nRAstates + 2)      # RA states + goal + fail state
+            "color": Discrete(len(s.COLORS) + 1),           # number of colors + no-color
+            "cell": Discrete(len(s.TOKENS) + 1),           # from encode_colors()
+            # "RAState": Discrete(self.RA.nRAstates + 2)      # RA states + goal + fail state
 
         })
         self.action_space = Discrete(self.nactions)
@@ -41,6 +41,35 @@ class GymSapientino(GymPygameWrapper, Sapientino):
             "x":        self.pos_x,
             "y":        self.pos_y,
             "theta":    int(self.pos_th/90),
-            "color":    self.encode_color(),
-            "RAState":  int(self.RA.current_node)
+            "color":    self.get_color(),
+            "cell":     self.encode_color(),
+            # "RAState":  int(self.RA.current_node)
         }
+
+    def getreward(self):
+        return 0
+
+    def encode_color(self):
+        for idx, t in enumerate(s.TOKENS):
+            if (self.pos_x == t[2] and self.pos_y == t[3]):
+                return idx
+        return len(s.TOKENS)
+
+    def get_color(self):
+        t = self.encode_color()
+        try:
+            tok = s.TOKENS[t]
+            color = s.COLORS.index(tok[1])
+        except:
+            # no color found
+            color = len(s.COLORS)
+        return color
+
+    def step(self, action):
+        obs, reward, done, info = super().step(action)
+        done = False
+        info["goal"] = True
+        return obs, reward, done, info
+
+    def goal_reached(self):
+        return True

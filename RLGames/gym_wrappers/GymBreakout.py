@@ -62,11 +62,6 @@ class GymBreakout(GymPygameWrapper, Breakout):
         else:
             paddle_x = int(self.paddle_x) // resx
 
-        # x = ball_x + self.n_ball_x * ball_y + (self.n_ball_x * self.n_ball_y) * ball_dir + (
-        #         self.n_ball_x * self.n_ball_y * self.n_ball_dir) * paddle_x
-        #
-        # return int(x)
-
         diff_paddle_ball = int((self.ball_x - self.paddle_x + self.win_width) / b.resolutionx)
 
         return {
