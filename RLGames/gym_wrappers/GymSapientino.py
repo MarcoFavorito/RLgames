@@ -17,12 +17,11 @@ class GymSapientino(GymPygameWrapper, Sapientino):
 
     PygameEnvClass = Sapientino
 
-    def __init__(self, rows=5, cols=7, trainsessionname='test', ncol=7, nvisitpercol=2, deterministic=True):
+    def __init__(self, rows=5, cols=7, trainsessionname='test', ncol=7, nvisitpercol=2, differential=False):
         Sapientino.__init__(self, rows, cols, trainsessionname, ncol, nvisitpercol)
-        self.deterministic = deterministic
+        self.differential = differential
         self.sound_enabled = False
         self.init(DummyAgent())
-
 
         self.observation_space = Dict({
             "x": Discrete(self.cols),
@@ -67,7 +66,10 @@ class GymSapientino(GymPygameWrapper, Sapientino):
 
     def step(self, action):
         obs, reward, done, info = super().step(action)
-        done = False
+        if self.numactions > (self.cols * self.rows) * 10:
+            done = True
+        else:
+            done = False
         info["goal"] = True
         return obs, reward, done, info
 
