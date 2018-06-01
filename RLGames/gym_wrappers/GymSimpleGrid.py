@@ -11,6 +11,7 @@ class GymSimpleGrid(GymPygameWrapper, SimpleGrid):
     PygameEnvClass = SimpleGrid
 
     def __init__(self, rows=3, cols=3, trainsessionname='test'):
+        GymPygameWrapper.__init__(**locals())
         SimpleGrid.__init__(self, rows, cols, trainsessionname=trainsessionname)
         self.init(DummyAgent())
 

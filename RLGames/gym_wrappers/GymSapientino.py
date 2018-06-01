@@ -18,6 +18,7 @@ class GymSapientino(GymPygameWrapper, Sapientino):
     PygameEnvClass = Sapientino
 
     def __init__(self, rows=5, cols=7, trainsessionname='test', ncol=7, nvisitpercol=2, differential=False):
+        GymPygameWrapper.__init__(**locals())
         Sapientino.__init__(self, rows, cols, trainsessionname, ncol, nvisitpercol)
         self.differential = differential
         self.sound_enabled = False

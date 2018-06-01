@@ -14,6 +14,7 @@ class GymMinecraft(GymPygameWrapper, Minecraft):
     PygameEnvClass = Minecraft
 
     def __init__(self, differential=False):
+        GymPygameWrapper.__init__(**locals())
         Minecraft.__init__(self)
         self.differential = differential
         self.init(DummyAgent())

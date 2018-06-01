@@ -1,7 +1,13 @@
 from gym import Env
+from gym.utils import EzPickle
 
 
-class GymPygameWrapper(Env):
+class GymPygameWrapper(Env, EzPickle):
+
+    def __init__(self, *args, **kwargs):
+        Env.__init__(self)
+        EzPickle.__init__(*args, **kwargs)
+
 
     @property
     def PygameEnvClass(self):

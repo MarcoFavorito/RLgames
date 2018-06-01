@@ -17,6 +17,7 @@ class GymBreakout(GymPygameWrapper, Breakout):
     PygameEnvClass = Breakout
 
     def __init__(self, brick_rows=3, brick_cols=3, trainsessionname='test', deterministic=True):
+        GymPygameWrapper.__init__(**locals())
         Breakout.__init__(self, brick_rows, brick_cols, trainsessionname=trainsessionname)
         self.deterministic = deterministic
         self.sound_enabled = False
