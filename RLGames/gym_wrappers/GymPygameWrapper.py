@@ -6,7 +6,7 @@ class GymPygameWrapper(Env, EzPickle):
 
     def __init__(self, *args, **kwargs):
         Env.__init__(self)
-        EzPickle.__init__(*args, **kwargs)
+        EzPickle.__init__(self, *args, **kwargs)
 
 
     @property

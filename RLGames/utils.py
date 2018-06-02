@@ -16,3 +16,8 @@ class DummyAgent(object):
 
     def set_action_names(self, *args):
         pass
+
+
+def get_locals_no_self(cur_locals):
+    cur_locals.pop("self")
+    return cur_locals

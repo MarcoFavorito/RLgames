@@ -9,7 +9,7 @@ from RLGames.gym_wrappers.GymPygameWrapper import GymPygameWrapper
 
 from RLGames.Sapientino import Sapientino
 import RLGames.Sapientino as s
-from RLGames.utils import DummyAgent
+from RLGames.utils import DummyAgent, get_locals_no_self
 
 
 class GymSapientino(GymPygameWrapper, Sapientino):
@@ -18,7 +18,7 @@ class GymSapientino(GymPygameWrapper, Sapientino):
     PygameEnvClass = Sapientino
 
     def __init__(self, rows=5, cols=7, trainsessionname='test', ncol=7, nvisitpercol=2, differential=False):
-        GymPygameWrapper.__init__(**locals())
+        GymPygameWrapper.__init__(self, **get_locals_no_self(locals()))
         Sapientino.__init__(self, rows, cols, trainsessionname, ncol, nvisitpercol)
         self.differential = differential
         self.sound_enabled = False

@@ -5,7 +5,7 @@ from RLGames.Minecraft import Minecraft
 import RLGames.Minecraft as m
 from RLGames.gym_wrappers.GymPygameWrapper import GymPygameWrapper
 
-from RLGames.utils import DummyAgent
+from RLGames.utils import DummyAgent, get_locals_no_self
 
 
 class GymMinecraft(GymPygameWrapper, Minecraft):
@@ -14,7 +14,7 @@ class GymMinecraft(GymPygameWrapper, Minecraft):
     PygameEnvClass = Minecraft
 
     def __init__(self, differential=False):
-        GymPygameWrapper.__init__(**locals())
+        GymPygameWrapper.__init__(self, **get_locals_no_self(locals()))
         Minecraft.__init__(self)
         self.differential = differential
         self.init(DummyAgent())

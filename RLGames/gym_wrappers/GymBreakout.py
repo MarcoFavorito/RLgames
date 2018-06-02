@@ -8,7 +8,7 @@ from gym.spaces import Discrete, Box, Dict
 from RLGames import Breakout as b
 from RLGames.Breakout import Breakout
 from RLGames.gym_wrappers.GymPygameWrapper import GymPygameWrapper
-from RLGames.utils import DummyAgent
+from RLGames.utils import DummyAgent, get_locals_no_self
 
 
 class GymBreakout(GymPygameWrapper, Breakout):
@@ -17,7 +17,7 @@ class GymBreakout(GymPygameWrapper, Breakout):
     PygameEnvClass = Breakout
 
     def __init__(self, brick_rows=3, brick_cols=3, trainsessionname='test', deterministic=True):
-        GymPygameWrapper.__init__(**locals())
+        GymPygameWrapper.__init__(self, **get_locals_no_self(locals()))
         Breakout.__init__(self, brick_rows, brick_cols, trainsessionname=trainsessionname)
         self.deterministic = deterministic
         self.sound_enabled = False
