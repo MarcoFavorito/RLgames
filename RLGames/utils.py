@@ -1,6 +1,3 @@
-from RLGames.RLAgent import RLAgent
-
-
 class DummyAgent(object):
 
     def __init__(self):
