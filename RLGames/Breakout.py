@@ -570,12 +570,12 @@ class Breakout(object):
         # count_label = self.myfont.render(str(self.ball_speed_y), 100, pygame.color.THECOLORS['brown'])
         # self.screen.blit(count_label, (160, 10))
 
-        if self.isAuto is True:
-            auto_label = self.myfont.render("Auto", 100, pygame.color.THECOLORS['red'])
-            self.screen.blit(auto_label, (self.win_width - 200, 10))
-        if (self.agent.optimal):
-            opt_label = self.myfont.render("Best", 100, pygame.color.THECOLORS['red'])
-            self.screen.blit(opt_label, (self.win_width - 100, 10))
+        # if self.isAuto is True:
+        #     auto_label = self.myfont.render("Auto", 100, pygame.color.THECOLORS['red'])
+        #     self.screen.blit(auto_label, (self.win_width - 200, 10))
+        # if (self.agent.optimal):
+        #     opt_label = self.myfont.render("Best", 100, pygame.color.THECOLORS['red'])
+        #     self.screen.blit(opt_label, (self.win_width - 100, 10))
 
         for brick in self.bricks:
             pygame.draw.rect(self.screen, grey, brick.rect, 0)

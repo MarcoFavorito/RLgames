@@ -47,7 +47,7 @@ class GymSapientino(GymPygameWrapper, Sapientino):
         }
 
     def getreward(self):
-        return 0
+        return Sapientino.getreward(self)
 
     def encode_color(self):
         for idx, t in enumerate(s.TOKENS):
@@ -76,3 +76,7 @@ class GymSapientino(GymPygameWrapper, Sapientino):
 
     def goal_reached(self):
         return True
+
+    def reset(self):
+        self.RA.init(self)
+        return GymPygameWrapper.reset(self)

@@ -1,5 +1,5 @@
-
-from gym.spaces import Discrete, Dict
+from gym import Space
+from gym.spaces import Discrete, Dict, Tuple
 
 from RLGames.Minecraft import Minecraft
 import RLGames.Minecraft as m
@@ -23,21 +23,35 @@ class GymMinecraft(GymPygameWrapper, Minecraft):
         # for t in list(m.TASKS.keys()):
         #     ntasks *= len(m.TASKS[t])+1
 
+        d = {}
+        for l, _, _, _ in m.LOCATIONS:
+            d[l] = Discrete(2)
+
+
         self.observation_space = Dict({
             "x":          Discrete(self.cols),
             "y":          Discrete(self.rows),
             "theta":      Discrete(4),                   # four directions: North - South - East - West
-            "location":   Discrete(len(m.LOCATIONS) + 1)
+            "location":   Discrete(len(m.LOCATIONS) + 1),
+            "actionlocation": Dict(d)
         })
         self.action_space = Discrete(self.nactions)
 
 
     def getstate(self):
+        d = {}
+        for l, _, u, v in m.LOCATIONS:
+            if (u, v) in self.actionlocation:
+                d[l] = 1
+            else:
+                d[l] = 0
+
         return {
             "x":            self.pos_x,
             "y":            self.pos_y,
             "theta":        int(self.pos_th/90),
-            "location":     self.get_item()
+            "location":     self.get_item(),
+            "actionlocation": d
         }
 
 
@@ -53,7 +67,7 @@ class GymMinecraft(GymPygameWrapper, Minecraft):
 
     def step(self, action):
         obs, reward, done, info = super().step(action)
-        if self.numactions > (self.cols * self.rows) * 10:
+        if self.numactions > self.nactionlimit:
             # stop the game if too much actions
             done = True
         else:

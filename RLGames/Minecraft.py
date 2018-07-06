@@ -36,18 +36,24 @@ CRAFTEDTOOLS = ['bridge','axe'] # usable and crafted tools
 LOCATIONS = [ ('wood',brown,1,1), ('grass',green,4,3), ('iron',grey,5,5), ('gold',gold,1,6), ('gem',lblue,8,1),
     ('toolshed',dbrown,2,4), ('workbench',dgreen,6,3), ('factory',dgrey,4,7) ]
 
+LOCATION2ENTITY = {(u, v): e for e, _, u, v in LOCATIONS}
+
 
 TASKS = OrderedDict([
-    ('get_gem', ['get_wood', 'use_workbench', 'get_iron', 'use_toolshed', 'use_axe']),
+#     ('get_gem', ['get_wood', 'use_workbench', 'get_iron', 'use_toolshed', 'use_axe']),
+
     ('make_bed', ['get_wood', 'use_toolshed', 'get_grass', 'use_workbench']),
     ('make_axe', ['get_wood', 'use_workbench', 'get_iron', 'use_toolshed']),
-    ('make_shears', ['get_wood', 'use_workbench', 'get_iron', 'use_workbench']),
-    ('get_gold', ['get_iron', 'get_wood', 'use_factory', 'use_bridge']),
     ('make_bridge', ['get_iron', 'get_wood', 'use_factory']),
-    ('make_plank', ['get_wood', 'use_toolshed']),
-    ('make_stick', ['get_wood', 'use_workbench']),
-    ('make_cloth', ['get_grass', 'use_factory']),
-    ('make_rope',  ['get_grass', 'use_toolshed']),
+
+    # ('make_shears', ['get_wood', 'use_workbench', 'get_iron', 'use_workbench']),
+    # ('get_gold', ['get_iron', 'get_wood', 'use_factory', 'use_bridge']),
+    # ('make_bridge', ['get_iron', 'get_wood', 'use_factory']),
+
+    # ('make_plank', ['get_wood', 'use_toolshed']),
+    # ('make_stick', ['get_wood', 'use_workbench']),
+    # ('make_cloth', ['get_grass', 'use_factory']),
+    # ('make_rope',  ['get_grass', 'use_toolshed']),
 ])
 
 REWARD_STATES = {
@@ -96,7 +102,7 @@ class Minecraft(object):
         self.cumscore100 = 0 
         self.ngoalreached = 0
         
-        self.nactionlimit = 1000
+        self.nactionlimit = 150
         self.ntaskactionslimit = 100
         self.turnslimit = 4 # max consecutive turns allowed
         self.useslimit = 5 # max consecutive uses allowed
@@ -235,7 +241,7 @@ class Minecraft(object):
         if (self.differential):
             x += (self.pos_th/90) * n
             n *= 4
-        x += n * self.encode_task_state()     
+        # x += n * self.encode_task_state()
         return x        
 
     def goal_reached(self):

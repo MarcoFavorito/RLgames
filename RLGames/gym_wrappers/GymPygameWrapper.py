@@ -44,7 +44,7 @@ class GymPygameWrapper(ABC, Env, EzPickle):
 
 
 class PygameVideoRecorder(Wrapper):
-    def __init__(self, env: GymPygameWrapper, directory):
+    def __init__(self, env: GymPygameWrapper, directory, fps=30):
         super().__init__(env)
 
         self.episode = -1
@@ -55,6 +55,7 @@ class PygameVideoRecorder(Wrapper):
 
         self.shape = (self.env.win_width, self.env.win_height)
         self.vid = None
+        self.fps = fps
 
     def render(self, mode='human'):
         self.env.render()
@@ -72,7 +73,7 @@ class PygameVideoRecorder(Wrapper):
         if self.vid is not None:
             self.vid.release()
         self.vid = cv2.VideoWriter(self.directory + '/episode_{}.avi'.format(self.episode),
-                                   cv2.VideoWriter_fourcc(*"XVID"), 30, self.shape, 1)
+                                   cv2.VideoWriter_fourcc(*"XVID"), self.fps, self.shape, 1)
 
         return self.env.reset(*args, **kwargs)
 

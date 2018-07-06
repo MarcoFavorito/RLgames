@@ -22,13 +22,14 @@ TOKENS = [ ['r1', COLORS[0], 0, 0],  ['r2', 'red', 1, 1], ['r3', 'red', 6, 3],
 STATES = {
     'Init':0,
     'Alive':0,
-    'Dead':-10,
+    'Dead':0,#-10,
     'Score':0,
     'Hit':0,
     'GoodColor':0,
-    'GoalStep':100,
-    'RAFail':-10,
-    'RAGoal':100
+    'GoalStep':0,#100,
+    'RAFail':0,#-10,
+    'RAGoal':0,#100,
+    'Step': 0#-0.01
 }
 
 # Reward automa
@@ -489,7 +490,7 @@ class Sapientino(object):
 
         #if (self.finished):
         #    print("  -- final reward %d" %(self.cumreward))            
-
+        self.current_reward += STATES["Step"]
 
 
 
